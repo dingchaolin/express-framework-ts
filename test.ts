@@ -7,10 +7,10 @@ import {MysqlConfig} from "./config/MysqlConfig";
 
 let mysql = new MysqlConnection( MysqlConfig );
 
-let sql = `insert into student values(2, 'man')`;
-mysql.query( sql, [], (error:IError,results?:any,fields?:IFieldInfo[])=>{
-    console.log( error, results, fields );
-})
+// let sql = `insert into student values(2, 'man')`;
+// mysql.query( sql, [], (error:IError,results?:any,fields?:IFieldInfo[])=>{
+//     console.log( error, results, fields );
+// })
 
 /*
  null OkPacket {
@@ -24,3 +24,8 @@ mysql.query( sql, [], (error:IError,results?:any,fields?:IFieldInfo[])=>{
  changedRows: 0 } undefined
 
  */
+
+let sql = `select id,name from student where id = ?`;
+mysql.query( sql, [1], (error:IError,results?:any,fields?:IFieldInfo[])=>{
+    console.log( error, results, fields );
+})

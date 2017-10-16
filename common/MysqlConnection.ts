@@ -57,3 +57,5 @@ export class MysqlConnection{
         return this.query(sqlObj.sql, sqlObj.options, callback, forceMaster);
     }
 }
+
+export let mysqlInstance = new MysqlConnection( MysqlConfig );

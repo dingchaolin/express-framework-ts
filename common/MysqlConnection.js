@@ -1,21 +1,19 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-/**
- * Created by chaolinding on 2017/10/15.
- */
-var mysql = require("mysql");
+const mysql = require("mysql");
+const MysqlConfig_1 = require("../config/MysqlConfig");
 ;
 ;
-var MysqlConnection = (function () {
-    function MysqlConnection(config) {
+class MysqlConnection {
+    constructor(config) {
         this.pool_Master = mysql.createPool(config.master);
         this.pool_Slave = mysql.createPool(config.slave);
     }
     ;
-    MysqlConnection.prototype.poolQuery = function (pool, sql, options, callback) {
-        pool.getConnection(function (err, connection) {
+    poolQuery(pool, sql, options, callback) {
+        pool.getConnection((err, connection) => {
             if (!err) {
-                var query = connection.query(sql, options, function (error, results, fields) {
+                let query = connection.query(sql, options, (error, results, fields) => {
                     connection.release();
                     callback(error, results, fields);
                 });
@@ -24,10 +22,9 @@ var MysqlConnection = (function () {
                 console.log(err);
             }
         });
-    };
+    }
     ;
-    MysqlConnection.prototype.query = function (sql, options, callback, forceMaster) {
-        if (forceMaster === void 0) { forceMaster = false; }
+    query(sql, options, callback, forceMaster = false) {
         if (forceMaster) {
             return this.poolQuery(this.pool_Master, sql, options, callback);
         }
@@ -40,12 +37,11 @@ var MysqlConnection = (function () {
                 return this.poolQuery(this.pool_Master, sql, options, callback);
             }
         }
-    };
+    }
     ;
-    MysqlConnection.prototype.querySqlObj = function (sqlObj, callback, forceMaster) {
-        if (forceMaster === void 0) { forceMaster = false; }
+    querySqlObj(sqlObj, callback, forceMaster = false) {
         return this.query(sqlObj.sql, sqlObj.options, callback, forceMaster);
-    };
-    return MysqlConnection;
-}());
+    }
+}
 exports.MysqlConnection = MysqlConnection;
+exports.mysqlInstance = new MysqlConnection(MysqlConfig_1.MysqlConfig);
