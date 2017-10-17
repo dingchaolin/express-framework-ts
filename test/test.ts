@@ -1,9 +1,9 @@
 /**
  * Created by chaolinding on 2017/10/15.
  */
-import {SqlObject,WhereObject,MysqlConnection} from "./common/MysqlConnection";
+import {SqlObject,WhereObject,MysqlConnection} from "../common/MysqlConnection";
 import {IError,IFieldInfo} from "mysql";
-import {MysqlConfig} from "./config/MysqlConfig";
+import {MysqlConfig} from "../config/MysqlConfig";
 
 let mysql = new MysqlConnection( MysqlConfig );
 

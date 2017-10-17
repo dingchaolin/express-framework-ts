@@ -1,0 +1,14 @@
+{
+  "apps":[
+    {
+      "name":"App",
+      "script":"./App.js",
+      "instances":1,
+      "exec_mode":"cluster",
+      "interpreter": "/usr/local/n/versions/node/8.7.0/bin/node",
+      "env": {
+        "NODE_ENV": "dev"
+      }
+    }
+  ]
+}

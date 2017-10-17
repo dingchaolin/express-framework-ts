@@ -8,7 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const baseModel_1 = require("./core/baseModel");
+const baseModel_1 = require("../core/baseModel");
 let mysql = new baseModel_1.BaseModel();
 let test = () => __awaiter(this, void 0, void 0, function* () {
     let ret = yield mysql.fetchList(mysql.DB, 'student', 'id,name', "id >= 0 ");

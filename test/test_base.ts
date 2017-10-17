@@ -1,10 +1,10 @@
 /**
  * Created by chaolinding on 2017/10/15.
  */
-import {SqlObject,WhereObject,MysqlConnection} from "./common/MysqlConnection";
+import {SqlObject,WhereObject,MysqlConnection} from "../common/MysqlConnection";
 import {IError,IFieldInfo} from "mysql";
-import {MysqlConfig} from "./config/MysqlConfig";
-import {BaseModel} from "./core/baseModel";
+import {MysqlConfig} from "../config/MysqlConfig";
+import {BaseModel} from "../core/baseModel";
 
 let mysql = new BaseModel();
 
