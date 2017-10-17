@@ -5,7 +5,7 @@
 export interface HtmlTdk{
     title:string;
     keyword:string;
-    desctription:string;
+    description:string;
 }
 
 export interface EjsViewData {

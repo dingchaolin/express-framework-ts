@@ -12,6 +12,8 @@ export interface MysqlMasterSlaveConfig {
     slave:IPoolConfig;
 }
 
+console.log("NODE_ENV===",NODE_ENV);
+
 let _MysqlConfig:MysqlMasterSlaveConfig;
 
 if(NODE_ENV === "development"){

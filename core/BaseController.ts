@@ -49,7 +49,7 @@ export class BaseController{
 
     async renderNotFind( res: express.Response ):Promise<any>{
         let self = this;
-        self.ejsViewData.title = "404";
+        self.ejsViewData.tdk.title = "404";
 
         return new Promise( ( resolve, reject) => {
             ejs.renderFile( self.getTemplateFilePathByName("error/404.ejs"),

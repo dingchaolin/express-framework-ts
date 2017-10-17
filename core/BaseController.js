@@ -16,7 +16,7 @@ class BaseController {
             tdk: {
                 title: "",
                 keyword: "",
-                desctription: ""
+                description: ""
             }
         };
     }
@@ -31,8 +31,53 @@ class BaseController {
                 ejs.renderFile(self.getTemplateFilePathByName(filename), self.ejsViewData, options, (err, str) => {
                     if (err) {
                         reject(err);
+                        self.renderError(res, err.message);
                     }
                     else {
+                        let html = str ? str : "";
+                        res.writeHead(200, { 'Content-Type': 'text/html;charset=utf-8' });
+                        res.end(html);
+                        resolve(html);
+                        return;
+                    }
+                });
+            });
+        });
+    }
+    renderNotFind(res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let self = this;
+            self.ejsViewData.tdk.title = "404";
+            return new Promise((resolve, reject) => {
+                ejs.renderFile(self.getTemplateFilePathByName("error/404.ejs"), self.ejsViewData, {}, (err, strErrorPage) => {
+                    if (err) {
+                        res.end("error page 404");
+                        reject(false);
+                    }
+                    else {
+                        let html = strErrorPage ? strErrorPage : "";
+                        res.end(html);
+                        resolve(html);
+                        return;
+                    }
+                });
+            });
+        });
+    }
+    renderError(res, error, options = {}) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let self = this;
+            return new Promise((resolve, reject) => {
+                ejs.renderFile(self.getTemplateFilePathByName("error/error.ejs"), { error: error }, options, (err, strErrorPage) => {
+                    if (err) {
+                        res.end("error page 404");
+                        reject(false);
+                    }
+                    else {
+                        let html = strErrorPage ? strErrorPage : "";
+                        res.end(html);
+                        resolve(html);
+                        return;
                     }
                 });
             });
