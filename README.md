@@ -1,4 +1,4 @@
-# mysql-pool
+# express-framework-ts
 
 ## 安装node
 - npm install @types/node --save
